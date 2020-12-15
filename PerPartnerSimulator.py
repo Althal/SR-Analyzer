@@ -30,3 +30,14 @@ class PerPartnerSimulator:
                 sum = sum + pd.to_numeric(priceCol[x])
 
         return 0.12 * sum / clicks
+
+    def getProducts(self, dataForPartnerInDay: pd.DataFrame):
+        args = len(dataForPartnerInDay.index)
+        productCol = dataForPartnerInDay[19]
+        ret = []
+
+        for x in range(args):
+            if productCol[x] not in ret:
+                ret.append(productCol[x])
+
+        return ret;
