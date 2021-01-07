@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from datetime import timedelta
 from Optimizer import Optimizer
 from PartnerDataReader import PartnerDataReader
 from PerPartnerSimulator import PerPartnerSimulator
@@ -48,7 +48,8 @@ class SimulationCore:
             for y in range(len(products)):
                 if products[y] not in allProducts:
                     allProducts.append(products[y])
-                    print(datetime.utcfromtimestamp(timeCol[y]))
+                    #allProducts.append(str(products[y]))
+                    #print(datetime.utcfromtimestamp(timeCol[y]))
 
             optimizer = Optimizer(allProducts)
             excluded = optimizer.getExcludedProductsPseudoradnomly()
@@ -58,11 +59,12 @@ class SimulationCore:
             for y in range(len(excluded)):
                 print(excluded[y])
 
+            dateToJson = datetime.utcfromtimestamp(timeCol[0]) + timedelta(days=1)
             jsonLog['days'].append({
-                'day': str(datetime.utcfromtimestamp(timeCol[0]).year) + "-" +
-                       str(datetime.utcfromtimestamp(timeCol[0]).month) + "-" +
-                       str(datetime.utcfromtimestamp(timeCol[0]).day),
-                'excluded': excluded,
+                'day': str(dateToJson.year) + "-" +
+                       str(dateToJson.month) + "-" +
+                       str(dateToJson.day),
+                'productsToExclude': excluded,
             })
 
             self.currentDay = self.currentDay + 1;

@@ -1,13 +1,9 @@
 from SimulationCore import SimulationCore
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
 
 if __name__ == '__main__':
-    partner = "C0F515F0A2D0A5D9F854008BA76EB537"
+    partner = "C306F0AD20C9B20C69271CC79B2E0887"
     simulationCore = SimulationCore(partner)
 
 
